@@ -1,0 +1,249 @@
+article {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100vh;
+    box-sizing: border-box;
+    padding: 25px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #9FA167;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+section {
+    height: 40%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    border: solid 2px #000;
+    background-color: #136F63;
+
+}
+
+.grupier-cont, .player-cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    position: relative;
+}
+
+.points-grupier, .points-player {
+    width: 50px;
+    height: 50px;
+    margin: 20px;
+    text-align: center;
+    background-color: #3F88C5;
+    color: #fff;
+    border: solid 1px #000;
+    align-content: center;
+    border-radius: 50%; 
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+#img {
+    border-radius: 25px;
+    order: 10;
+}
+
+img {
+    height: 150px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.hand-grupier,.points-player, .points-grupier, .deck {
+    margin: 30px;
+}
+
+.center-player {
+    display: flex;
+    width: 50%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background-color:transparent
+}
+
+.player-cont {
+    width: 100%;
+}
+
+.btn-cont button {
+    width: 110px;
+    padding: 15px 10px;
+    font-size: 18px;
+    border-radius: 15px;
+    background-color: #FFBA08;
+    border: none;
+}
+
+.btn-cont {
+    align-content: center;
+    margin: auto;
+}
+
+.hand-grupier, .hand-player {
+    display: flex;
+    align-items: center;
+}
+
+h1 {
+    width: 200px;
+    padding: 15px 0;
+    border-radius: 50px;
+    font-family: sans-serif;
+    text-align: center;
+    background-color: #D00000;
+    border: solid 5px #BD0000;
+}
+#seccion1 {
+    order: -2;
+}
+
+.points-player {
+    order: 10;
+}
+
+.player-cont::before, .grupier-cont::before {
+    content: "hola";
+    position: absolute;
+    margin: 20px;
+    padding: 10px 20px;
+    background-color: #032B43;
+    color: #fff;
+    border-radius: 10px;
+    width: 100px;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+.player-cont::before {
+    content: "Jugador";
+    top: 0;
+}
+
+.grupier-cont::before {
+    content: "Grupier";
+    bottom: 0;
+}
+
+.btn-cont button:hover, .botonRePlay:hover {
+    background-color: #CFAE38;
+    cursor: pointer;
+}
+
+.btn-cont button:active, .botonRePlay:active {
+    color: #fff
+}
+
+.pos {
+    transform: translate(250%);
+    position: absolute;
+    animation-name: mover;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes mover {
+    from {
+        transform: translate(250%);
+    }
+    to {
+        transform: translate(0%);
+        position: relative;
+    }
+}
+
+@keyframes moverp {
+    from {
+        transform: translateY(-315%) translateX(160%);
+        position: absolute;
+    }
+    to {
+        transform: translate(0,0);
+        position: relative;
+    }
+}
+
+.posp {
+    position: absolute;
+    animation-name: moverp;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+}
+
+.deck img {
+    position: relative;
+    z-index: 10;
+}
+
+.play-btn {
+    font-size: 50px;
+    padding: 40px;
+    border-radius: 100px;
+    border: none;
+    background-color: #D00000;
+    color: #fff;
+    order: 3;
+    
+}
+
+.play-btn:hover {
+    background-color: #BD0000;
+    cursor: pointer;
+}
+
+.play-btn:active {
+    color: #000;
+    background-color: #BD0000;
+}
+
+.bl {
+    height: 100px;
+}
+
+.div-bl {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
+}
+
+.botonRePlay {
+    width: 200px;
+    padding: 15px 0;
+    border-radius: 10px;
+    font-family: sans-serif;
+    text-align: center;
+    font-size: 20px;
+    background-color: #FFBA08;
+    border: none;
+}
+
+.fin {
+    order: -1;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.imgfondo {
+    order: 10000;
+    border-radius: 25px;
+}
