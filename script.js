@@ -18,6 +18,7 @@ function generarCarta() {
         generarCarta()
     }
 }
+
 valorCartasJugador = [];
 valorCartasGrupier = [];
 iJ = 0
@@ -42,8 +43,8 @@ mostrarCartasGrupier = () => {
 }
 
 plantar = () => {
-    document.getElementById("pedir-btn").removeEventListener("click", darCartaJugador);
     document.getElementById("plantar-btn").removeEventListener("click", plantar);
+    document.getElementById("pedir-btn").removeEventListener("click", darCartaJugador);
     mostrarCartasGrupier()
     if (vG != "BJ") var vG = sumarPuntos(valorCartasGrupier);
     if (vJ != "BJ") var vJ = sumarPuntos(valorCartasJugador);
@@ -77,9 +78,7 @@ finDelJuego.classList.add("fin")
 finDelJuego.appendChild(H1Res)
 finDelJuego.appendChild(botonRePlay)
 
-setTimeout(()=>{
-    if(document.querySelector("article").children.length == 2) document.querySelector("article").appendChild(finDelJuego)
-},t+250)
+if(document.querySelector("article").children.length == 2) document.querySelector("article").appendChild(finDelJuego)
 
 }
 
@@ -100,7 +99,7 @@ reiniciar = () => {
     for (const iterator of listaCartas) document.querySelector(".hand-player").removeChild(iterator)
 
     document.getElementById("pedir-btn").addEventListener("click", darCartaJugador);
-    document.getElementById("plantar-btn").addEventListener("click", () => {plantar()});
+    document.getElementById("plantar-btn").addEventListener("click",plantar);
 
     document.querySelector(".hand-grupier").appendChild(imgfondo)
     console.log("eeeeeeee");
@@ -122,7 +121,6 @@ contarPuntos = c => {
     else console.log("bro?");
 }
 let order = 1
-var t = 0
 darCartaJugador = () => {
     let carta = generarCarta()
     if (carta == undefined) {
@@ -134,10 +132,9 @@ darCartaJugador = () => {
     valorCartasJugador[iJ] = contarPuntos(valCarta)
     console.log(valorCartasJugador);
     carta.classList.add("posp")
-    setTimeout(()=> {document.querySelector(".hand-player").appendChild(carta);},t)
+    document.querySelector(".hand-player").appendChild(carta);
     iJ++;
-    t+= 500
-    if (sumarPuntos(valorCartasJugador) == 21 && valorCartasJugador.length == 2) {
+    if (sumarPuntos(valorCartasJugador) == 21 && iJ == 2) {
         var vJ = "BJ";
         plantar()
     }
@@ -150,9 +147,8 @@ darCartaJugador = () => {
 
 darCartaGrupier = (x) => {
     let carta = generarCarta()
-    if (carta == undefined) {
-        darCartaGrupier()
-    }
+    if (carta == undefined && x != undefined) darCartaGrupier(true)
+    else if (carta == undefined && x == undefined) darCartaGrupier()
     else {
         let valCarta = carta.children[0].getAttribute("src").substring(7,9)
         console.log(valCarta);
@@ -160,13 +156,9 @@ darCartaGrupier = (x) => {
         console.log(valorCartasGrupier);
         carta.classList.add ("pos")
         carta.style.order = order.toString()
-    setTimeout(() => {
         document.querySelector(".hand-grupier").appendChild(carta)
-        if (x != undefined) document.querySelector(".hand-grupier").removeChild(document.getElementById("img2"))
+        if (x != undefined) document.querySelector(".hand-grupier").removeChild(imgfondo)
         document.querySelector(".points-grupier").innerHTML=sumarPuntos(valorCartasGrupier)
-    }, t);
-        
-    t+= 500
     iG++;
     order++
     }
@@ -191,15 +183,12 @@ function prepararMesa() {
     darCartaJugador()
     darCartaJugador()
 
-    t = 500
-
-
 }
 
 document.getElementById("pedir-btn").addEventListener("click", darCartaJugador)
 prepararMesa()
 
-document.getElementById("plantar-btn").addEventListener("click", plantar)
+document.getElementById("plantar-btn").addEventListener("click",plantar)
 
 document.getElementById("articulo").style.display = "none"
 const botonPlay = document.createElement("BUTTON")
